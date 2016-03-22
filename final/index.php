@@ -1,25 +1,25 @@
 <?php
     //including required files
-    include('login_check.php');
+    include('contollers/login_check.php');
     //for stroing errors
-    $er='';
+    $er = '';
     //chcking whether querystring pass any error
     if(isset($_GET['er']))
     {
         //storing error into message
-        $er=$_GET['er'];
+        $er = $_GET['er'];
     }
     //maintain session
     if (isset($_SESSION['id']))
     {
         
-        if (isset($_SESSION['id']) == 1 && isset($_SESSION['role']) == 'admin') 
+        if (isset($_SESSION['id']) == 1 && isset($_SESSION['role']) == 1) 
         {
-            header('location:dashboard.php');
+            header('location:admin/index.php');
         }
         else
         {            
-            header('location:manage_profile.php?id='.$_SESSION['id']);
+            header('location:user/manage_profile.php');
         }
     }    
     
@@ -52,29 +52,29 @@
                 ?>
             </span>
 
-                <form id="form" name="form" role="form" class="form" method="post" > 
-                    
-                    <label>Admin Login Here!! </label><br>
-                    
-                        <label>Enter Username :</label>&nbsp;
-                        
-                            <input type="text" name="uname" id="uname" placeholder="username" />
-                            
-                                <span class="glyphicon glyphicon-user" id="spa"></span><br>
-                    
-                                    <label>Enter Password :</label>&nbsp;
-                        
-                                        <input type="password" name="password" id="pass" placeholder="password" />
-                            
-                                            <span class="glyphicon glyphicon-lock" id="spa"></span><br>
-                        
-                                                <input type="submit" class="btn btn-success" name="login" value="Login" />&nbsp;
-                        
-                                                    <input type="button" class="btn btn-danger" name="reg" value="Register" onclick="location.href='register.php';" /><br><br>
-                    
-                                                        <label id="forgot"><a href="forgotpassword.php"> forgot password</a></label>
-                
-                </form>        
+<form id="form" name="form" role="form" class="form" method="post" > 
+
+<label>Admin Login Here!! </label><br>
+
+<label>Enter Username :</label>&nbsp;
+
+<input type="text" name="uname" id="uname" placeholder="username" />
+
+<span class="glyphicon glyphicon-user" id="spa"></span><br>
+
+<label>Enter Password :</label>&nbsp;
+
+<input type="password" name="password" id="pass" placeholder="password" />
+
+<span class="glyphicon glyphicon-lock" id="spa"></span><br>
+
+<input type="submit" class="btn btn-success" name="login" value="Login" />&nbsp;
+
+<input type="button" class="btn btn-danger" name="reg" value="Register" onclick="location.href='register.php';" /><br><br>
+
+<label id="forgot"><a href="forgotpassword.php"> forgot password</a></label>
+
+</form>        
 
         </div>
 
@@ -93,16 +93,16 @@
             {
                 $("#form").submit(function() 
                 {
-                    if($("#uname").val()=="")  
+                    if($("#username").val()=="")  
                     {  
                         alert('Username must required');  
-                        $("#uname").focus();
+                        $("#username").focus();
                         return false;  
                     }  
-                    else if($("#pass").val()=="")  
+                    else if($("#password").val()=="")  
                     {  
                         alert('Password must required');  
-                        $("#pass").focus();
+                        $("#password").focus();
                         return false;  
                     }  
                     else  
